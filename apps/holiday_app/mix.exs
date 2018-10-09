@@ -18,7 +18,11 @@ defmodule HolidayApp.Mixfile do
           "README.md": [filename: "readme", title: "Readme"]
         ],
         main: "readme"
-      ]
+      ],
+      build_path: "../../_build",
+      config_path: "../../config/config.exs",
+      deps_path: "../../deps",
+      lockfile: "../../mix.lock"
     ]
   end
 
