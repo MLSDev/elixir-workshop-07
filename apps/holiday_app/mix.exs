@@ -70,7 +70,8 @@ defmodule HolidayApp.Mixfile do
       {:ueberauth_identity, "~> 0.2"},
       {:ueberauth_google, "~> 0.7"},
       {:ueberauth_facebook, "~> 0.7"},
-      {:bodyguard, "~> 2.2"}
+      {:bodyguard, "~> 2.2"},
+      {:reminder_app, in_umbrella: true}
     ]
   end
 
