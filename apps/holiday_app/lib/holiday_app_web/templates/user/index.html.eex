@@ -1,0 +1,37 @@
+<h2 class="display-2">Listing Users</h2>
+
+<table class="table table-hover">
+  <thead class="thead-light">
+    <tr>
+      <th>Name</th>
+      <th>E-mail</th>
+      <th>Provider</th>
+      <th>Role</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= for user <- @resources do %>
+      <tr>
+        <td>
+          <%= user.name %>
+        </td>
+        <td>
+          <%= link "#{user.email}", to: user_path(@conn, :show, user) %>
+        </td>
+        <td><%= provider(user) %></td>
+        <td><%= role(user) %></span>
+          <td class="text-right">
+          <span>
+            <%= link "Show", to: user_path(@conn, :show, user), class: "btn btn-sm btn-outline-info" %>
+          </span>
+          <%= if can_update_user?(@conn, user) do %>
+            <span>
+              <%= link "Edit", to: user_path(@conn, :edit, user), class: "btn btn-sm  btn-outline-primary" %>
+            </span>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

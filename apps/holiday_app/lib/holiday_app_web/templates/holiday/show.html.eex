@@ -1,0 +1,38 @@
+<h2 class="display-2">Show Holiday</h2>
+
+<div id="holiday" data-id="<%= @resource.id %>">
+  <ul>
+    <li>
+      <strong>Title:</strong>
+      <%= @resource.title %>
+    </li>
+    <li>
+      <strong>Date:</strong>
+      <%= @resource.date %>
+    </li>
+    <li>
+      <strong>Kind:</strong>
+      <%= humanize(@resource.kind) %>
+    </li>
+  </ul>
+</div>
+
+<%= if can_update_holiday?(@conn, @resource) do %>
+  <span>
+    <%= link "Edit", to: holiday_path(@conn, :edit, @resource), class: "btn btn-outline-primary" %>
+  </span>
+<% end %>
+
+<span>
+  <%= link "Back", to: holiday_path(@conn, :index), class: "btn btn-outline-secondary" %>
+</span>
+
+<hr/>
+
+<div class="card" id="messages-wrapper">
+  <ul class="list-unstyled" id="messages">
+  </ul>
+</div>
+
+<br/>
+<input class="form-control" id="chat-input" type="text" placeholder="Write your message and press Enter..."/>

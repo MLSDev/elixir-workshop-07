@@ -1,0 +1,41 @@
+<h2 class="display-2">Show User</h2>
+
+<div class="row">
+  <div class="col-md-2">
+    <%= img_tag(photo_url(@resource), class: "img-thumbnail") %>
+  </div>
+
+  <div class="col-md-10">
+    <ul>
+      <li>
+        <strong>Name:</strong>
+        <%= @resource.name %>
+      </li>
+
+      <li>
+        <strong>E-mail:</strong>
+        <%= @resource.email %>
+      </li>
+
+      <li>
+        <strong>Provider:</strong>
+        <%= provider(@resource) %>
+      </li>
+
+      <li>
+        <strong>Role:</strong>
+        <%= role(@resource) %>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<%= if can_update_user?(@conn, @resource) do %>
+  <span>
+    <%= link "Edit", to: user_path(@conn, :edit, @resource), class: "btn btn-outline-primary" %>
+  </span>
+<% end %>
+
+<span>
+  <%= link "Back", to: user_path(@conn, :index), class: "btn btn-outline-secondary" %>
+</span>

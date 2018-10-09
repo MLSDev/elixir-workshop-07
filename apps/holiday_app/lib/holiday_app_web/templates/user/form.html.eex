@@ -1,0 +1,23 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <%= if @changeset.action, do: alert("Oops, something went wrong! Please check the errors below.", :danger) %>
+
+  <div class="form-group row">
+    <%= label f, :email, class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-4">
+      <%= email_input f, :email, class: "form-control", disabled: true %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= label f, :name, class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-4">
+      <%= text_input f, :name, class: "form-control" %>
+      <%= error_tag f, :name %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= submit "Submit", class: "btn btn-primary" %>
+    <%= link "Cancel", to: user_path(@conn, :index), class: "btn btn-outline-secondary" %>
+  </div>
+<% end %>

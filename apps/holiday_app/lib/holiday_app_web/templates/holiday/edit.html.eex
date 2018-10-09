@@ -1,0 +1,3 @@
+<h2 class="display-2">Edit Holiday</h2>
+
+<%= render "form.html", Map.put(assigns, :action, holiday_path(@conn, :update, @resource)) %>

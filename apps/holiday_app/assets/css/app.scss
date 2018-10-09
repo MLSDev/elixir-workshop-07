@@ -1,0 +1,39 @@
+@import "~bootstrap/scss/bootstrap";
+
+body {
+  padding-bottom: 1rem;
+}
+
+nav.navbar {
+  margin-bottom: 8px;
+}
+
+td {
+ @extend .align-middle;
+}
+
+form.link {
+  display: inline;
+}
+
+.alert:empty { display: none; }
+
+.navbar-container {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.invalid-feedback {
+  display: block;
+}
+
+.img-thumbnail {
+  max-width: 96px;
+  max-height: 96px;
+}
+
+.card#messages-wrapper {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 10rem;
+}

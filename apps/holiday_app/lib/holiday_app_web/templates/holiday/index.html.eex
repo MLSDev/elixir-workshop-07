@@ -1,0 +1,64 @@
+<h2 class="display-2">Listing Holidays</h2>
+
+<div class="card pt-4 px-4">
+  <%= form_for @conn, holiday_path(@conn, :index), [method: :get], fn f -> %>
+    <div class="form-group row">
+      <%= label f, "From", class: "col-sm-2 col-info-label" %>
+      <div class="col-sm-4">
+        <%= date_input f, :start_date, value: @start_date, class: "form-control" %>
+      </div>
+    </div>
+    <div class="form-group row">
+      <%= label f, "To", class: "col-sm-2 col-info-label" %>
+      <div class="col-sm-4">
+        <%= date_input f, :end_date, value: @end_date, class: "form-control" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= submit "Update", class: "btn btn-primary" %>
+      <%= link "Reset", to: holiday_path(@conn, :index), class: "btn btn-outline-secondary" %>
+    </div>
+  <% end %>
+</div>
+
+<%= if can_create_holiday?(@conn) do %>
+  <div class="my-4">
+    <%= link "New Holiday", to: holiday_path(@conn, :new), class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<table class="table table-hover">
+  <thead class="thead-light">
+    <tr>
+      <th>Title</th>
+      <th>Date</th>
+      <th>Kind</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= for holiday <- @resources do %>
+        <tr>
+          <td><%= holiday.title %></td>
+          <td><%= holiday.date %></td>
+          <td><%= holiday.kind %></td>
+          <td class="text-right">
+            <span>
+              <%= link "Show", to: holiday_path(@conn, :show, holiday), class: "btn btn-sm btn-outline-info" %>
+            </span>
+            <%= if can_update_holiday?(@conn, holiday) do %>
+              <span>
+                <%= link "Edit", to: holiday_path(@conn, :edit, holiday), class: "btn btn-sm btn-outline-primary" %>
+              </span>
+            <% end %>
+            <%= if can_delete_holiday?(@conn, holiday) do %>
+              <span>
+                <%= link "Delete", to: holiday_path(@conn, :delete, holiday),
+                                method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-sm btn-danger" %>
+              </span>
+            <% end %>
+          </td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>
